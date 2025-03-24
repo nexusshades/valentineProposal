@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'Handlee', cursive;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            padding: 30px;
+            background: #fffaf0;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 2px solid #ffb6c1;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            color: #d63384;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            transition: 0.3s;
+            position: relative;
+        }
+        
+        .yes-btn {
+            background-color: #ff69b4;
+            color: white;
+            box-shadow: 2px 2px 8px rgba(255, 105, 180, 0.3);
+        }
+        
+        .yes-btn:hover {
+            background-color: #ff1493;
+            transform: scale(1.1);
+        }
+        
+        .no-btn {
+            background-color: #ff7f7f;
+            color: white;
+            box-shadow: 2px 2px 8px rgba(255, 127, 127, 0.3);
+        }
+        
+        .no-btn:hover {
+            background-color: #e63946;
+            transform: scale(1.1);
+        }
+        
+        #image {
+            margin-top: 20px;
+            display: none;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        #message {
+            font-size: 1.4em;
+            color: #6a0572;
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="message">Maaf kr dijiye , bhul chuk maaf</h1>
+        <div class="buttons">
+            <button class="yes-btn" onclick="respond(true)">Maan gyi 😊</button>
+            <button class="no-btn" id="no-btn" onclick="respond(false)">Khe kha 😡</button>
+        </div>
+        <img id="image" src="" style="display:none;">
+    </div>
+
+    <script>
+        let noCount = 0;
+        const messages = [
+            "Please don't get mad at me, I know I have made mistakes but give me a chance to work on them. 🥺🥺🥺",
+            "Pinky promise , I will work out our ways and make it up to you. ❤️‍🩹🩵",
+            "Param Sundari ❤️❤️👀!",
+            "This picture is from 13th march last year, almost a year huh 💖🌟, Me sorry, genuinely bro",
+            "Ab to krna hi prega, huahahah 😈"
+        ];
+        const gifs = [
+            "", "", "kashish photo.jpg",
+            "kashish shahin photo 13 march.jpg",, "https://media.giphy.com/media/xT9DPldJHzZKtOnH9K/giphy.gif"
+        ];
+
+        function respond(convinced) {
+            let img = document.getElementById("image");
+            let message = document.getElementById("message");
+            let noButton = document.getElementById("no-btn");
+
+            if (convinced) {
+                window.location.href = "convinced.html";
+                return;
+            }
+
+            if (noCount === 6) {
+                noButton.style.pointerEvents = "none";
+                noButton.innerText = "No More No's!";
+                return;
+            }
+
+            message.innerText = messages[noCount];
+            img.src = gifs[noCount];
+            img.style.display = gifs[noCount] ? "block" : "none";
+            noCount++;
+
+            if (noCount === 5) {
+                noButton.onmouseover = function() {
+                    noButton.style.position = "absolute";
+                    noButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
+                    noButton.style.top = Math.random() * (window.innerHeight - 50) + "px";
+                };
+            }
+        }
+    </script>
+</body>
+</html>
